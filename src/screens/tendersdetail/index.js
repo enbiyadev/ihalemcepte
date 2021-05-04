@@ -3,12 +3,18 @@ import { StyleSheet, Text, View, ScrollView} from 'react-native';
 
 
 export default class TenderDetail extends React.Component {
+    
+    constructor(props) {
+        super(props);
+
+        this.item = props.navigation.getParam("item");
+      }
 
     render () {
         return (
             <View style={style.container}>
                 <View style={style.header}>
-                    <Text style={style.header_title}>İhalem Cepte</Text>
+                    <Text style={style.header_title}>İhalem Cepte /* Örnek kullanım this.item.title */</Text>
                 </View>
                 <ScrollView>
                     <View style={style.tenders}>
