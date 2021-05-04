@@ -2,9 +2,55 @@ import React, {Component} from "react";
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity} from 'react-native';
 import TenderDetail from "../tendersdetail";
 
+// Benim yaptığım
+class TendersList extends Component {
+    
+    gotoDetail = item => {
+        this.props.navigation.navigate("TenderDetail", {
+          item
+        });
+    }
+    
+    renderTenderItem = ({item, index}) => {
+        return(
+          <TouchableOpacity onPress={() => this.gotoDetail('item')}>
+                <View style={style.tenders_item} >
+                    <View style={style.tenders_info}>
+                        <View style={style.item}>
+                            <Text style={style.tenders_text}>İhalenin Bitişine Kalan Süre</Text>
+                        </View>
+                        <View style={style.item}>
+                            <Text style={style.tender_text_price}>14 DK</Text>
+                        </View>
+                    </View>
+                    <Image style={style.tenders_image} source={require('../../images/gtr.jpg')} />
+                    <View style={style.tenders_info}>
+                        <View style={style.item}>
+                            <Text style={style.tenders_text}>Nissan GTR</Text>
+                        </View>
+                        <View style={style.item}>
+                            <Text style={style.tender_text_price}>En Yüksek Teklif: 1.350.000₺</Text>
+                        </View>
+                    </View>
+                </View>
+            </TouchableOpacity>
+        )
+      }
+      
+      render() {
+          return(
+            <FlatList 
+                renderItem={ this.renderTenderItem }
+                keyExtractor={ (item, index) => index.toString() }
+                data={ gelenDatan } // örnek kullanım
+              />
+          )
+      }
+    
+}
 
 const Tenders = ({navigation}) => {
-
+        
     return (
         <View style={style.container}>
             <View style={style.header}>
